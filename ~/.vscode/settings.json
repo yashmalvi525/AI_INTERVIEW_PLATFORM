@@ -1,0 +1,5 @@
+{
+    // Other settings
+    "json.schemas": [],
+    "json.validate.enable": false
+  }
