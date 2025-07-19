@@ -6,6 +6,9 @@ import { Toaster } from "@/components/ui/sonner";
 const monaSans = MonaSansFont({
   variable: "--font-mona-sans",
   subsets: ["latin"],
+  display: 'swap',
+  fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Arial', 'sans-serif'],
+  preload: true,
 });
 
 export const metadata: Metadata = {
