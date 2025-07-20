@@ -43,7 +43,7 @@ interface InterviewCardProps {
   userId?: string;
   role: string;
   type: string;
-  techstack: string[];
+  techstack?: string[] | undefined | null;
   createdAt?: string;
 }
 
@@ -95,5 +95,5 @@ interface InterviewFormProps {
 }
 
 interface TechIconProps {
-  techStack: string[];
+  techStack?: string[] | undefined | null;
 }

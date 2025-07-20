@@ -1,13 +1,33 @@
+'user-client'
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { dummyInterviews } from '../../constants';
-import InterviewCard from "@/app/components/InterviewCard" // ✅ Make sure this path is correct
+import InterviewCard from '@/app/components/InterviewCard';
+import {
+  getCurrentUser,
+  getInterviewByUserId,
+  getLatestInterviews,
+} from '@/actions/auth.action';
 
-const Page = () => {
+const Page = async () => {
+  const user = await getCurrentUser();
+
+  const [rawUserInterviews, rawLatestInterviews] = await Promise.all([
+    getInterviewByUserId(user?.id!),
+    getLatestInterviews({ userId: user?.id! }),
+  ]);
+
+  // Fallback to empty array if null or undefined
+  const userInterviews = rawUserInterviews || [];
+  const latestInterviews = rawLatestInterviews || [];
+
+  const hasPastInterviews = userInterviews.length > 0;
+  const hasUpcomingInterviews = latestInterviews.length > 0;
+
   return (
     <>
+      {/* CTA Section */}
       <section className="card-cta">
         <div className="flex flex-col gap-6 max-w-lg">
           <h2>Get Interview-Ready with AI-Powered Practice & Feedback</h2>
@@ -27,24 +47,33 @@ const Page = () => {
         />
       </section>
 
+      {/* Past Interviews Section */}
       <section className="flex flex-col gap-6 mt-8">
-        <h2>Your Interviews</h2>
+        <h2>Your Past Interviews</h2>
         <div className="interviews-section">
-          {dummyInterviews.map((interview, index) => (
-            <InterviewCard key={interview.id} {...interview} />
-          ))}
+          {hasPastInterviews ? (
+            userInterviews.map((interview) => (
+              <InterviewCard key={interview.id} {...interview} />
+            ))
+          ) : (
+            <p>You haven't taken any interviews yet.</p>
+          )}
         </div>
       </section>
 
-          <section className="flex flex-col gap-6 mt-8">
-        <h2>Take an Interview</h2>
+      {/* Available New Interviews Section */}
+      <section className="flex flex-col gap-6 mt-8">
+        <h2>Available Interviews</h2>
         <div className="interviews-section">
-        {dummyInterviews.map((interview) => (
-          <InterviewCard key={interview.id} {...interview} /> 
-        ))}
+          {hasUpcomingInterviews ? (
+            latestInterviews.map((interview) => (
+              <InterviewCard key={interview.id} {...interview} />
+            ))
+          ) : (
+            <p>There are no new interviews available at the moment.</p>
+          )}
         </div>
       </section>
-
     </>
   );
 };

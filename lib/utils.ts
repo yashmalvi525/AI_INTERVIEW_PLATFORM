@@ -32,7 +32,12 @@ const checkIconExists = async (url: string) => {
 };
 
 // Get URLs for tech stack logos
-export const getTechLogos = async (techArray: string[]) => {
+export const getTechLogos = async (techArray: string[] | undefined | null) => {
+  // Handle undefined/null techArray
+  if (!techArray || !Array.isArray(techArray)) {
+    return [];
+  }
+  
   const logoURLs = techArray.map((tech) => {
     const normalized = normalizeTechName(tech);
     return {
