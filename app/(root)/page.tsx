@@ -1,24 +1,20 @@
-'user-client'
+// 'use client'
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import InterviewCard from '@/app/components/InterviewCard';
-import {
-  getCurrentUser,
-  getInterviewByUserId,
-  getLatestInterviews,
-} from '@/actions/auth.action';
+import { getCurrentUser } from '@/actions/auth.action';
+import { getInterviewsByUserId, getLatestInterviews } from '@/actions/general.action';
 
 const Page = async () => {
   const user = await getCurrentUser();
 
   const [rawUserInterviews, rawLatestInterviews] = await Promise.all([
-    getInterviewByUserId(user?.id!),
+    getInterviewsByUserId(user?.id!), // ✅ fixed function name
     getLatestInterviews({ userId: user?.id! }),
   ]);
 
-  // Fallback to empty array if null or undefined
   const userInterviews = rawUserInterviews || [];
   const latestInterviews = rawLatestInterviews || [];
 

@@ -6,8 +6,18 @@ import { getRandomInterviewCover } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import DisplayTechicons from './DisplayTechicons';
 
+// ✅ Type definition for props
+type InterviewCardProps = {
+  id: string;
+  userId: string;
+  role: string;
+  type: string;
+  techstack: string[];
+  createdAt: string | number | Date;
+};
+
 const InterviewCard = ({
-  interviewId,
+  id,
   userId,
   role,
   type,
@@ -16,10 +26,7 @@ const InterviewCard = ({
 }: InterviewCardProps) => {
   const feedback = null as Feedback | null;
 
-  // Normalize type
   const normalizedType = /mix/gi.test(type) ? 'Mixed' : type;
-
-  // Format date
   const formattedDate = dayjs(feedback?.createdAt || createdAt || Date.now()).format('MMM D, YYYY');
 
   return (
@@ -38,9 +45,7 @@ const InterviewCard = ({
             className="rounded-full object-fit size-[90px]"
           />
 
-          <h3 className="mt-5 capitalize">
-            {role} Interview
-          </h3>
+          <h3 className="mt-5 capitalize">{role} Interview</h3>
 
           <div className="flex flex-row gap-5 mt-3">
             <div className="flex flex-row gap-2 items-center">
@@ -61,13 +66,7 @@ const InterviewCard = ({
           <div className="flex flex-row justify-between items-center mt-4">
             <DisplayTechicons techStack={techstack} />
             <Button className="btn-primary">
-              <Link
-                href={
-                  feedback
-                    ? `/interview/${interviewId}/feedback`
-                    : `/interview/${interviewId}`
-                }
-              >
+              <Link href={feedback ? `/interview/${id}/feedback` : `/interview/${id}`}>
                 {feedback ? 'Check Feedback' : 'View Interview'}
               </Link>
             </Button>
