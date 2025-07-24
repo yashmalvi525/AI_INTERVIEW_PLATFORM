@@ -720,14 +720,14 @@ async function Home() {
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {userInterviews?.map((interview) => (
                   <InterviewCard
-                    key={interview.id}
-                    userId={user?.id}
-                    interviewId={interview.id}
-                    role={interview.role}
-                    type={interview.type}
-                    techstack={interview.techstack}
-                    createdAt={interview.createdAt}
-                  />
+                 key={interview.id}
+                 userId={user?.id ?? ''}
+                 id={interview.id}
+                 role={interview.role}
+                 type={interview.type}
+                 techstack={interview.techstack}
+                 createdAt={interview.createdAt}
+               /> 
                 ))}
               </div>
             ) : (
@@ -756,15 +756,15 @@ async function Home() {
             {hasUpcomingInterviews ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {allInterview?.map((interview) => (
-                  <InterviewCard
-                    key={interview.id}
-                    userId={user?.id}
-                    interviewId={interview.id}
-                    role={interview.role}
-                    type={interview.type}
-                    techstack={interview.techstack}
-                    createdAt={interview.createdAt}
-                  />
+                 <InterviewCard
+                 key={interview.id}
+                 userId={user?.id ?? ''}
+                 id={interview.id}
+                 role={interview.role}
+                 type={interview.type}
+                 techstack={interview.techstack}
+                 createdAt={interview.createdAt}
+               />               
                 ))}
               </div>
             ) : (
@@ -871,9 +871,9 @@ async function Home() {
                 </h2>
                 <h3 className="text-4xl font-semibold text-white mb-6">Yash Malvi</h3>
                 <p className="text-2xl text-gray-300 leading-relaxed">
-                  I&apos;m a 3rd-year CSE student passionate about DSA, Backend Development, and building PrepWise - 
-                  an AI-powered interview preparation platform. My mission is to democratize interview success 
-                  by providing personalized, intelligent feedback that helps developers land their dream jobs.
+                I’m a 4th-year CSE student passionate about DSA, backend development, and building impactful AI products. I created PrepWise, an AI-powered interview prep tool to help developers crack their dream roles with personalized feedback.
+                <br />
+The goal is bigger — I aim to make PrepWise a full-fledged hiring and practice platform, bridging the gap between preparation and real opportunities.
                 </p>
               </div>
 
@@ -932,7 +932,7 @@ async function Home() {
               </Button>
               
               <Button asChild variant="outline" className="border-2 border-gray-600 text-gray-300 hover:bg-gray-800 hover:border-cyan-400 px-12 py-6 rounded-2xl font-bold text-xl transition-all duration-300 transform hover:scale-105">
-                <a href="mailto:yaashlohhar158@gmail.com" className="flex items-center gap-4">
+                <a href="mailto:yashlohar158@gmail.com" className="flex items-center gap-4">
                   <Mail className="w-6 h-6" />
                   Contact Me
                 </a>
@@ -978,7 +978,7 @@ async function Home() {
               <h4 className="font-bold text-white mb-6 text-xl">Contact</h4>
               <div className="space-y-3">
                 <a href="mailto:yaashlohhar158@gmail.com" className="block text-gray-400 hover:text-cyan-400 transition-colors text-lg">
-                  yaashlohhar158@gmail.com
+                  yashlohar158@gmail.com
                 </a>
               </div>
             </div>
@@ -986,7 +986,7 @@ async function Home() {
           
           <div className="border-t border-gray-800 mt-12 pt-8 text-center">
             <p className="text-gray-400 text-lg">
-              Made with <span className="text-red-500">❤️</span> by Yash Malvi © 2024 PrepWise. All rights reserved.
+              Made with <span className="text-red-500">❤️</span> by Yash Malvi © 2025 PrepWise. All rights reserved.
             </p>
           </div>
         </div>
