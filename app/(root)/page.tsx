@@ -494,7 +494,7 @@ async function Home() {
                   alt="AI Interview Assistant"
                   width={600}
                   height={600}
-                  className="w-full h-auto animate-bounce drop-shadow-2xl"
+                  className="w-full h-auto drop-shadow-2xl"
                 />
               </div>
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/30 to-purple-600/30 rounded-full blur-3xl animate-pulse"></div>
